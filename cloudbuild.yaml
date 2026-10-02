@@ -1,0 +1,39 @@
+# Cloud Build — build and deploy trimble-worksmanager-notion-sync Cloud Run Job
+substitutions:
+  _REGION: us-west1
+  _JOB: trimble-worksmanager-notion-sync
+  _PROJECT: work-projects-486912
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${_PROJECT}/cloud-run-source-deploy/${_JOB}:${TAG_NAME}
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_REGION}-docker.pkg.dev/${_PROJECT}/cloud-run-source-deploy/${_JOB}:${TAG_NAME}
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - jobs
+      - deploy
+      - ${_JOB}
+      - --project=${_PROJECT}
+      - --region=${_REGION}
+      - --image=${_REGION}-docker.pkg.dev/${_PROJECT}/cloud-run-source-deploy/${_JOB}:${TAG_NAME}
+      - --max-retries=0
+      - --task-timeout=1800
+      - --set-env-vars=DRY_RUN=true,GOOGLE_CLOUD_PROJECT=${_PROJECT}
+      - --set-secrets=TRIMBLE_CLIENT_ID=TRIMBLE_CLIENT_ID:latest,TRIMBLE_CLIENT_SECRET=TRIMBLE_CLIENT_SECRET:latest,NOTION_TOKEN=Notion_Google_Cloud_Sync:latest
+
+images:
+  - ${_REGION}-docker.pkg.dev/${_PROJECT}/cloud-run-source-deploy/${_JOB}:${TAG_NAME}
+
+options:
+  logging: CLOUD_LOGGING_ONLY
