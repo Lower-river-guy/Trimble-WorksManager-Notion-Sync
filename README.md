@@ -90,22 +90,7 @@ gcloud run jobs execute trimble-worksmanager-notion-sync `
 Both invoke only `trimble-worksmanager-notion-sync` via Run API v2 `:run`.
 Timezone: `America/Los_Angeles`. OAuth: `564809734796-compute@developer.gserviceaccount.com`.
 
-Schedulers are **PAUSED** until the v0.01.00 dry-run is approved and the job is set to `DRY_RUN=false`.
-
-After approval:
-
-```powershell
-gcloud run jobs update trimble-worksmanager-notion-sync `
-  --project work-projects-486912 `
-  --region us-west1 `
-  --update-env-vars "DRY_RUN=false"
-
-gcloud scheduler jobs resume trimble-worksmanager-notion-sync-0900 `
-  --project work-projects-486912 --location us-west1
-
-gcloud scheduler jobs resume trimble-worksmanager-notion-sync-1300 `
-  --project work-projects-486912 --location us-west1
-```
+Production: job `DRY_RUN=false`; both schedulers **ENABLED** (go-live approved 2026-10-02).
 
 ## CI
 

@@ -29,7 +29,7 @@ steps:
       - --image=${_REGION}-docker.pkg.dev/${_PROJECT}/cloud-run-source-deploy/${_JOB}:${TAG_NAME}
       - --max-retries=0
       - --task-timeout=1800
-      - --set-env-vars=DRY_RUN=true,GOOGLE_CLOUD_PROJECT=${_PROJECT}
+      - --set-env-vars=DRY_RUN=false,GOOGLE_CLOUD_PROJECT=${_PROJECT}
       - --set-secrets=TRIMBLE_CLIENT_ID=TRIMBLE_CLIENT_ID:latest,TRIMBLE_CLIENT_SECRET=TRIMBLE_CLIENT_SECRET:latest,NOTION_TOKEN=Notion_Google_Cloud_Sync:latest
 
 images:
