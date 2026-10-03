@@ -10,7 +10,7 @@ import sys
 from config import Settings
 from log_utils import log
 from notion_client import NotionClient
-from secrets import hydrate_credentials
+from gcp_secrets import hydrate_credentials
 from sync_engine import SyncEngine
 from trimble_client import TrimbleClient
 
