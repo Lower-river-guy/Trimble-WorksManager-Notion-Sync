@@ -67,7 +67,7 @@ gcloud run jobs deploy trimble-worksmanager-notion-sync `
   --source . `
   --max-retries 0 `
   --task-timeout 1800 `
-  --set-env-vars "DRY_RUN=true,GOOGLE_CLOUD_PROJECT=work-projects-486912" `
+  --set-env-vars "DRY_RUN=false,GOOGLE_CLOUD_PROJECT=work-projects-486912" `
   --set-secrets "TRIMBLE_CLIENT_ID=TRIMBLE_CLIENT_ID:latest,TRIMBLE_CLIENT_SECRET=TRIMBLE_CLIENT_SECRET:latest,NOTION_TOKEN=Notion_Google_Cloud_Sync:latest"
 ```
 

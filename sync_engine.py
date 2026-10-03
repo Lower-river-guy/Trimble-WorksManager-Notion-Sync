@@ -21,7 +21,6 @@ PROJECT_KEYS: tuple[str, ...] = (
     "Coordinate Summary",
     "Device Count",
     "Machine Count",
-    "Last API Sync",
 )
 
 DEVICE_KEYS: tuple[str, ...] = (
@@ -41,7 +40,6 @@ DEVICE_KEYS: tuple[str, ...] = (
     "Correction Source",
     "Last Reported",
     "Assigned Designs",
-    "Last API Sync",
 )
 
 MACHINE_KEYS: tuple[str, ...] = (
@@ -55,7 +53,6 @@ MACHINE_KEYS: tuple[str, ...] = (
     "Model",
     "Operator",
     "Associated Device ID",
-    "Last API Sync",
 )
 
 
